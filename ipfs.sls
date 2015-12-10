@@ -1,10 +1,12 @@
-ipfs:
-  pkg.installed:
-    - name: ipfs-go
+sysutils/ipfs-go:
+  ports.installed: []
   user.present:
+    - name: ipfs
+    - fullname: IPFS User
     - home: /var/db/ipfs
     - shell: /sbin/nologin
-  group.present: []
+  group.present:
+    - name: ipfs
 
 /var/db/ipfs:
   file.directory:
@@ -43,7 +45,7 @@ ipfs-daemon:
     - name: ipfs-go
     - enable: True
     - require:
-      - pkg: ipfs-go
+      - ports: sysutils/ipfs-go
       - cmd: ipfs-init
       - file: /usr/local/etc/rc.d/ipfs-go
       - file: /etc/ipfs-go.ipfw.rules

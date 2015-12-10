@@ -1,0 +1,2 @@
+ipfw -q add allow tcp from any to any 4001 out setup keep-state
+ipfw -q add allow tcp from any to any 4001 in setup keep-state
